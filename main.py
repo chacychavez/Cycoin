@@ -1,14 +1,16 @@
+import sys
+
 from ecdsa import SECP256k1, SigningKey
 
 from blockchain import Blockchain, Transaction
 
 if __name__ == "__main__":
-    my_sk = SigningKey.from_string(
-        bytes.fromhex(
-            "e692071a67f14a9ad2ca534c27e7e46486d1297dd6bcc30d67fe573bb66e121a"
-        ),
-        curve=SECP256k1,
-    )
+
+    if len(sys.argv) == 1:
+        raise Exception("Missing private key!")
+
+    private_key = sys.argv[1]
+    my_sk = SigningKey.from_string(bytes.fromhex(private_key), curve=SECP256k1,)
     my_vk = my_sk.verifying_key.to_string().hex()
 
     cycoin = Blockchain()
