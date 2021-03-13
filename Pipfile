@@ -10,6 +10,8 @@ isort = "*"
 
 [packages]
 ecdsa = "*"
+"jinja2" = "*"
+flask = "*"
 
 [requires]
 python_version = "3.7"

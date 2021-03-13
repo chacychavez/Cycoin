@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <p>These transactions are waiting to be included in the next block. Next block is created when you start the mining process.</p>
+{% endblock %}

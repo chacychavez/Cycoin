@@ -72,6 +72,9 @@ class Block:
 
         return True
 
+    def get_transactions(self):
+        return self.transactions
+
 
 class Blockchain:
     def __init__(self):
@@ -137,11 +140,13 @@ class Blockchain:
 
         return balance
 
-    def print_chain(self):
+    def get_chain(self):
+        return self.chain
+
+    def get_transactions(self, block_hash):
         for block in self.chain:
-            print(f"timestamp: {block.timestamp}")
-            print(f"transactions: {block.transactions}")
-            print(f"previous_hash: {block.previous_hash}")
-            print(f"nonce: {block.nonce}")
-            print(f"hash: {block.hash}\n")
+            print(block)
+            if block.hash == block_hash:
+                return block.get_transactions()
+        return []
 

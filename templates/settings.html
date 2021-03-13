@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <p>Control how the blockchain behaves when new transactions or blocks are created. Changes are automatically saved.</p>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <p>Each card represents a block on the chain. Click on a block to see the transactions stored inside.</p>
+  <div>
+    {% for block in chain %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div>
+          Block {{loop.index}}
+        </div>
+        <a href="{{url_for('block', hash=block.hash)}}">View Transactions</a>
+        {% if active_block == block.hash %}
+          <span>- active</span>
+        {% endif %}
+      </div>
+      <div class="panel-body">
+        <div>Hash: {{block.hash}}</div>
+        <div>Hash of previous block: {{block.previous_hash}}</div>
+        <div>Nonce: {{block.nonce}}</div>
+      </div>
+      <div class="panel-footer">Timestamp: {{block.timestamp}}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div>
+    {% if active_block %}
+      {% if transactions %}
+      <table class="table table-striped">
+        <tr>
+          <th>From address</th>
+          <th>To address</th>
+          <th>Amount</th>
+        </tr>
+        {% for transaction in transactions %}
+          <tr>
+            <td>{{transaction.from_address}}</td>
+            <td>{{transaction.to_address}}</td>
+            <td>{{transaction.amount}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <div> No transactions </div>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}
